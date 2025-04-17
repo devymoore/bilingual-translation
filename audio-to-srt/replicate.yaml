@@ -1,0 +1,20 @@
+version: "0.1"
+build:
+  image: Dockerfile
+predict:
+  command:
+    - python
+    - predict.py
+    - "{{inputs.audio}}"
+    - "{{inputs.model_size}}"
+  inputs:
+    audio:
+      type: string
+      description: "URL or local path to the audio file"
+    model_size:
+      type: string
+      default: "base"
+      description: "Whisper model size (tiny, base, small, medium, large)"
+  output:
+    type: string
+    description: "Generated SRT subtitle content"
